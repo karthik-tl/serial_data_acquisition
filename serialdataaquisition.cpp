@@ -1,21 +1,30 @@
 #include "serialdataaquisition.h"
-
+#include <QDebug>
+QString port;
+QString res;
 SerialDataAquisition::SerialDataAquisition(QObject *parent)
     : QObject{parent}
 {
 
+
 }
+
 QStringList SerialDataAquisition::availablePorts()
 {
     QStringList ports;
-    QList<QSerialPortInfo> portInfoList = QSerialPortInfo::availablePorts();
 
-    for (const QSerialPortInfo &info : portInfoList)
+    for (const QSerialPortInfo &info : QSerialPortInfo::availablePorts())
     {
         ports.append(info.portName());
     }
 
     return ports;
+}
+
+void SerialDataAquisition::handleComboBoxSelection(const QString &selectedPort)
+{
+    qDebug() << "Selected Item: " << selectedPort;
+    port = selectedPort;
 }
 
 void SerialDataAquisition::connectPort()

@@ -22,7 +22,7 @@ Window {
             y:20
             id: comboBox
             width: 150
-            model: SerialCommunication.availablePorts()
+            model: SerialAquisition.availablePorts()
             onCurrentTextChanged: {
                 // Call a C++ function to handle the selection
                  SerialAquisition.handleComboBoxSelection(currentText)

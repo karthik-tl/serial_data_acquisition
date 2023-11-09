@@ -14,12 +14,18 @@ class SerialDataAquisition : public QObject
     Q_OBJECT
 private:
     QSerialPort serial;
+    //QStringList m_dropdownElements;
+   // Q_PROPERTY(QStringList dropdownElements READ dropdownElements NOTIFY dropdownElementsChanged)
+//    QStringList dropdownElements() const {
+//        return m_dropdownElements;
+//    }
 public:
     explicit SerialDataAquisition(QObject *parent = nullptr);
-    Q_INVOKABLE QStringList availablePorts();
-    void connectPort();
 signals:
 public slots:
+    QStringList availablePorts();
+    void connectPort();
+    void handleComboBoxSelection(const QString &selectedPort);
 
 };
 
