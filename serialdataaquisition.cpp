@@ -49,3 +49,27 @@ void SerialDataAquisition::connectPort()
         qDebug() << "port opening failed" << serial.errorString();
     }
 }
+
+void SerialDataAquisition::serialReceive() {
+    QByteArray readData;
+
+    while (true) {
+        if (serial.waitForReadyRead(1000)) { // Lower waiting time
+            readData.append(serial.readAll());
+            recievedData.append(readData);
+            emit newDataRecieved();
+            if (readData.contains('\n')) {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+
+    if (!readData.isEmpty()) {
+        QString result(readData);
+        qDebug() << "Received: " << result;
+
+       // signalCall(result);
+    }
+}

@@ -42,12 +42,7 @@ Window {
         ListView {
                  anchors.fill: parent
 
-                   model: ListModel {
-                       ListElement { name: "Item 1" }
-                       ListElement { name: "Item 2" }
-                       ListElement { name: "Item 3" }
-                       // Add more items as needed
-                   }
+                   model: SerialAquisition.listviewElements
 
                    delegate: Item {
                        width: ListView.view.width
@@ -63,7 +58,7 @@ Window {
                                text: model.name
                            }
                        }
-        }
-    }
+                    }
+            }
     }
 }
